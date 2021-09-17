@@ -63,7 +63,8 @@ Create Scripts
 💣CREATE CONTROL SCRIPT
 
 public string AppID;
-    public string ChannelName;
+       
+       public string ChannelName;
 
     VideoSurface myView;
     VideoSurface remoteView;
@@ -105,20 +106,20 @@ public string AppID;
 
 💣UI SETUP
 
-void SetupUI()
-{
+    void SetupUI()
+     {
         GameObject go = GameObject.Find("MyView");
         myView = go.AddComponent<VideoSurface>();
         go = GameObject.Find("LeaveButton");
         go?.GetComponent<Button>()?.onClick.AddListener(Leave);
         go = GameObject.Find("JoinButton");
         go?.GetComponent<Button>()?.onClick.AddListener(Join);
-}
+    }
 
   And the Join and Leave Function is simply calling the relevant Agora APIs:
   
   
-  void Join()
+     void Join()
     {
         mRtcEngine.EnableVideo();
         mRtcEngine.EnableVideoObserver();
@@ -139,7 +140,7 @@ void SetupUI()
  💣IMPLEMENT AGORA ENGINE SETUP
   
   
-  void SetupAgora()
+     void SetupAgora()
     {
         mRtcEngine = IRtcEngine.GetEngine(AppID);
 
@@ -154,7 +155,7 @@ void SetupUI()
   💣PROVIDE THE HANDLERS ON THE EVENT CALLBACKS
   
   
-void OnJoinChannelSuccessHandler(string channelName, uint uid, int elapsed)
+    void OnJoinChannelSuccessHandler(string channelName, uint uid, int elapsed)
     {
         // can add other logics here, for now just print to the log
         Debug.LogFormat("Joined channel {0} successful, my uid = {1}", channelName, uid);
@@ -195,7 +196,7 @@ void OnJoinChannelSuccessHandler(string channelName, uint uid, int elapsed)
   
   APPLICATION CLEAN-UP
   
-  void OnApplicationQuit()
+     void OnApplicationQuit()
     {
         if (mRtcEngine != null)
         {
